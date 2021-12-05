@@ -1,0 +1,19 @@
+{% extends 'new_base.html' %}
+   {% block head %}
+   <title> Roots </title>
+   {% endblock %}
+<body>
+  {% block body %}
+<h1 align='center'> The roots </h1>
+
+      {% for item in data %}
+      
+      <h3><a href="{% url 'item_detail' id=item.id %}">{{ item.name }}</a> </h3>
+      
+      {% endfor %}
+      
+</table>
+  {% endblock %}
+</body>
+</html>
+

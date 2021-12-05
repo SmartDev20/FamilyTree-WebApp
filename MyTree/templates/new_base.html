@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+   {% block head %}
+   <title> Home Page </title>
+   {% endblock %}
+   {% load static %}
+</head>
+<header>
+          <a  href="/">Home</a>
+          <a  href="/showdata">Show Tree</a>
+          <a  href="/insertdata">Insert New</a>
+</header>
+<body>
+  {% block body %}
+<h1 align='center'> Welcome This is My Family Tree </h1>
+  {% endblock %}
+</body>
+</html>
+

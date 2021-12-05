@@ -1,0 +1,34 @@
+{% extends 'new_base.html' %}
+   {% block head %}
+   <title> My Data </title>
+   {% endblock %}
+<body>
+  {% block body %}
+<h1 align='center'> This is My Data </h1>
+<table border=2>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Gender</th>
+      <th>Address</th>
+      <th>Telephone</th>
+      <th>Parent Name</th>
+      <th>Birth Day</th>
+      <th>Job</th>
+      {% for item in data %}
+      <tr>
+      <td>{{ item.id }} </td>
+      <td><a href="{% url 'item_detail' id=item.id %}">{{ item.name }}</a> </td>
+      <td>{{ item.gender }} </td>
+      <td>{{ item.address }} </td>
+      <td>{{ item.telephone }} </td>
+      <td>{{ item.parent_name }} </td>
+      <td>{{ item.birthday }} </td>
+      <td>{{ item.job }} </td>
+      </tr>
+      {% endfor %}
+      
+</table>
+  {% endblock %}
+</body>
+</html>
+

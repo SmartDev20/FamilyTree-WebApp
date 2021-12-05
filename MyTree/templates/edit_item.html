@@ -1,0 +1,87 @@
+{% extends 'new_base.html' %}
+{% load custom_tags %}
+   {% block head %}
+   <title> Edit Item </title>
+   {% endblock %}
+<body>
+  {% block body %}
+<h1 align='center'> Edit details for  {{ item_data.name }} </h1>
+<p> {{ fullname }} </p>
+<img style='display:block; width:200px;height:200px;' src="data:image/jpeg;base64, {{ item_data.img | img_decode  }}" />
+<div align = 'center' >
+<form action='updateaction' method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+<table>
+      <tr>
+      <td>Name : </td>
+      <td><input type="text" name="tname" id="tname" value={{ item_data.name }}> </td>
+      </tr>
+      <tr>
+      <td>Gender : </td>
+      {% if item_data.gender == 'Male' %}
+      <td>
+      <input type="radio" id="male" name="gender" value="Male" checked>
+      <label for="male">Male</label>
+      <input type="radio" id="female" name="gender" value="Female">
+      <label for="female">Female</label>
+      </td>
+      {% elif item_data.gender == 'Female' %}
+      <td>
+      <input type="radio" id="male" name="gender" value="Male">
+      <label for="male">Male</label>
+      <input type="radio" id="female" name="gender" value="Female" checked>
+      <label for="female">Female</label>
+      </td>
+      {% endif %}
+      </tr>
+      <tr>
+      <td>Address : </td>
+      <td><input type="text" name="tadd" value={{ item_data.address }}></td>
+      </tr>
+      <tr>
+      <td>Telephone : </td>
+      <td><input type="text" name="ttel" value={{ item_data.telephone }}></td>
+      </tr>
+       <tr>
+      <td>Parent Name : </td>
+      <td><input type="text" name="tprt_name" value={{ item_data.parent_name }}> </td>
+      </tr>
+      <tr>
+      <td>Birth Day : </td>
+      <td><input type="date" name="tbrd" value={{ item_data.birthday }}></td>
+      </tr>
+      <tr>
+      <td>Job : </td>
+      <td><input type="text" name="tjob" value={{ item_data.job }}></td>
+      </tr>
+      <tr>
+      {% if item_data.gender == 'Male' %}
+            <td>Wife Name : </td>
+      {% elif item_data.gender == 'Female' %}
+           <td>Husband Name : </td>
+      {% endif %}      
+      <td><input type="text" name="cup_name" value={{ item_data.cup_name }}></td>
+      </tr>
+      <tr>
+      {% if item_data.gender == 'Male' %}
+            <td>Wife Address : </td>
+      {% elif item_data.gender == 'Female' %}
+           <td>Husband Address : </td>
+      {% endif %}      
+      <td><input type="text" name="cup_add" value={{ item_data.cup_add }}></td>
+      </tr>
+      <tr>
+      <td>Image : </td>
+      <td><input type="file" id="myimg" name="myimg">
+      <tr>
+      <td>Date of Death : </td>
+      <td><input type="date" id="dod" name="dod" value={{ item_data.dod }}>
+      <tr>
+      <td>{% csrf_token %}</td>
+      <td><input type="submit" value="Save New data"></td>
+      </tr>
+</table>
+</form>
+</div>
+{% endblock %}
+</body>

@@ -1,0 +1,62 @@
+{% extends 'new_base.html' %}
+{% load custom_tags %}
+   {% block head %}
+   <title> New Branch </title>
+   {% endblock %}
+<body>
+  {% block body %}
+<h1 align='center'> New Branch for  {{ item_data.name }} </h1>
+<img style='display:block; width:200px;height:200px;' src="data:image/jpeg;base64, {{ item_data.img | img_decode  }}" />
+<div align = 'center' >
+<form action='insertaction' method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+<table>
+      <tr>
+      <td>Name : </td>
+      <td><input type="text" name="tname" id="tname"> </td>
+      </tr>
+      <tr>
+      <td>Gender : </td>
+      <td>
+      <input type="radio" id="male" name="gender" value="Male">
+      <label for="male">Male</label>
+      <input type="radio" id="female" name="gender" value="Female">
+      <label for="female">Female</label>
+      </td>
+      </tr>
+      <tr>
+      <td>Address : </td>
+      <td><input type="text" name="tadd" ></td>
+      </tr>
+      <tr>
+      <td>Telephone : </td>
+      <td><input type="text" name="ttel" ></td>
+      </tr>
+      <tr>
+      {% if item_data.gender == 'Male' %}
+            <td>Mother Name : </td>
+      {% elif item_data.gender == 'Female' %}
+           <td>Father Name : </td>
+      {% endif %}      
+      <td><input type="text" name="tprt_name" ></td>
+      </tr>
+      <tr>
+      <td>Birth Day : </td>
+      <td><input type="date" name="tbrd" ></td>
+      </tr>
+      <tr>
+      <td>Job : </td>
+      <td><input type="text" name="tjob" ></td>
+      </tr>
+      <tr>
+      <td>Image : </td>
+      <td><input type="file" id="myfile" name="myfile">
+      <tr>
+      <td>{% csrf_token %}</td>
+      <td><input type="submit" value="Save New data"></td>
+      </tr>
+</table>
+</form>
+</div>
+{% endblock %}
+</body>

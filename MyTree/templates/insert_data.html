@@ -1,0 +1,60 @@
+{% extends 'new_base.html' %}
+{% load static %}
+
+   {% block head %}
+   <title> My Data </title>
+   {% endblock %}
+<body>
+  {% block body %}
+<h1 align='center'> New Data </h1>
+<div align = 'center' >
+<form action='insertaction' method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+<table>
+      <tr>
+      <td>Name : </td>
+      <td><input type="text" name="tname" id="tname"> </td>
+      </tr>
+      <tr>
+      <td>Gender : </td>
+      <td>
+      <input type="radio" id="male" name="gender" value="Male">
+      <label for="male">Male</label>
+      <input type="radio" id="female" name="gender" value="Female">
+      <label for="female">Female</label>
+      </td>
+      </tr>
+      <tr>
+      <td>Address : </td>
+      <td><input type="text" name="tadd" ></td>
+      </tr>
+      <tr>
+      <td>Telephone : </td>
+      <td><input type="text" name="ttel" ></td>
+      </tr>
+       <tr>
+      <td>Parent Name : </td>
+      <td><input type="text" name="tprt_name" > </td>
+      </tr>
+      <tr>
+      <td>Birth Day : </td>
+      <td><input type="date" name="tbrd" ></td>
+      </tr>
+      <tr>
+      <td>Job : </td>
+      <td><input type="text" name="tjob" ></td>
+      </tr>
+      <tr>
+      <td>Image : </td>
+      <td><input type="file" id="myFile" name="myfile">
+      <tr>
+      <td>{% csrf_token %}</td>
+      <td><input type="submit" value="Save New data"></td>
+      </tr>
+</table>
+</form>
+</div>
+  {% endblock %}
+</body>
+</html>
+

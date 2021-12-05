@@ -1,0 +1,90 @@
+{% extends 'new_base.html' %}
+{% load custom_tags %}
+   {% block head %}
+   <title> {{ item_data.name }} </title>
+   {% endblock %}
+<body>
+  {% block body %}
+ 
+  
+<h2 align='center'>  {{ fullname }}  </h2>
+<aside class="actions">
+         
+           <a class="btn btn-default" href="{% url 'new_branch' id=item_data.id %}">{% include './icons/file-earmark-plus.svg' %}</a>
+           <a class="btn btn-default" href="{% url 'edit_item' id=item_data.id %}">{% include './icons/pencil-fill.svg' %}</a>
+          <img style='display:block; width:200px;height:200px;' src="data:image/jpeg;base64, {{ image }}" /> 
+      </aside>
+  
+       {% if item_data.gender %}
+           <p>Gender : {{ item_data.gender }} </p>
+       {% endif %}
+       {% if item_data.address %}
+           <p>Address : {{ item_data.address }} </p>
+       {% endif %}
+       {% if item_data.parent_name %}
+            {% if  parent_gen  == 'Male' %}
+                <p>Mother Name : {{ item_data.parent_name }}</p>
+            {% elif  parent_gen  == 'Female' %}
+                <p>Father Name : {{ item_data.parent_name }}</p> 
+            {% endif %}
+           
+       {% endif %}
+       {% if item_data.birthday %}
+           <p>Birth Day : {{ item_data.birthday }} </p>
+       {% endif %}
+       {% if item_data.cup_name %}
+           {% if item_data.gender == 'Male' %}
+                <p>Wife Name : {{ item_data.cup_name }} </p>
+           {% elif item_data.gender == 'Female' %}
+                <p>Husband Name : {{ item_data.cup_name }} </p>  
+           {% endif %}
+       {% endif %}
+       {% if item_data.cup_add %}
+           {% if item_data.gender == 'Male' %}
+                <p>Wife Address : {{ item_data.cup_add }} </p>
+           {% elif item_data.gender == 'Female' %}
+                <p>Husband Address : {{ item_data.cup_add }} </p>  
+           {% endif %}
+       {% endif %}
+       {% if item_data.job %}
+           <p>Job : {{ item_data.job }} </p>
+       {% endif %}
+       
+    
+
+<div>
+<table border=2>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Gender</th>
+      <th>Address</th>
+      <th>Telephone</th>
+      {% if item_data.gender == 'Male' %}
+                <th>Mother Name</th>
+      {% elif item_data.gender == 'Female' %}
+                <th>Father Name</th> 
+       {% endif %}
+      
+      <th>Birth Day</th>
+      <th>Job</th>
+      <th>Image</th>
+      {% for item in data %}
+      <tr>
+      <td>{{ item.id }} </td>
+      <td><a href="{% url 'item_detail' id=item.id %}">{{ item.name }}</a> </td>
+     <td>{{ item.gender }} </td>
+      <td>{{ item.address }} </td>
+      <td>{{ item.telephone }} </td>
+      <td>{{ item.parent_name }} </td>
+      <td>{{ item.birthday }} </td>
+      <td>{{ item.job }} </td>
+      <td><img style='display:block; width:100px;height:100px;' src="data:image/jpeg;base64, {{ item.img | img_decode  }}" /></td>
+      </tr>
+      {% endfor %}
+      
+</table>
+</div>
+
+  {% endblock %}
+</body>
+
