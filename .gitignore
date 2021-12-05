@@ -2,6 +2,7 @@
 *.pyc
 *~
 __pycache__
+./Family-Tree/FamilyTree/MyTree/__pycache__
 
 # Env
 .env
@@ -13,6 +14,9 @@ db.sqlite3
 
 # Static folder at project root
 /static/
+./Family-Tree/FamilyTree/MyTree/static
+./Family-Tree/FamilyTree/MyTree/migrations
+./Family-Tree/FamilyTree/MyTree/templatetags/__pycache__
 
 # macOS
 ._*
